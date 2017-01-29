@@ -55,8 +55,6 @@ function getCicleCircumference(radius) {
  */
 function getAverage(value1, value2) {
     return value1/2 + value2/2;
-    // throw new Error('Not implemented');
-
 }
 
 /**
@@ -115,13 +113,6 @@ function getLinearEquationRoot(a, b) {
 function getAngleBetweenVectors(x1, y1, x2, y2) {
     return Math.abs(Math.atan2(x1, y1) - Math.atan2(x2, y2));
 
-    // var a = Math.abs(x2 - x1);
-    // var b = Math.abs(y2 - y1);
-    // var c = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
-    // var z = Math.abs((Math.pow(a,2) + Math.pow(b,2) - Math.pow(c,2)) / 2*b*a);
-    // var ac = Math.atan(z) ;
-    // return ac; 
-    //Why in the console next to displays what is required? a test writing with an error 
 }
 
 /**
