@@ -57,7 +57,6 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    // return n ? n * factorial(n - 1) : 1;
     let result = 1;
     for (let i = 2; i <= n; i++) 
         result *= i;    
@@ -191,7 +190,7 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    
 }
 
 
@@ -357,7 +356,48 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+    function timespanToHumanString(startDate, endDate) {
+    let round = (time) => {
+        let dig = parseInt(time, 10),
+            ceil = time - dig;
+
+        if (ceil > 0.5)
+            dig++;
+
+        return dig;
+    };
+
+    const diff = endDate - startDate;
+    const second = 1000;
+    const minute = 60 * second;
+    const hour = 60 * minute;
+    const day = 24 * hour;
+    const month = 30 * day;
+    const year = 365 * day;
+
+    if (diff <= 45 * second)
+        return "a few seconds ago";
+    if (diff <= 90 * second)
+        return "a minute ago";
+    if (diff <= 45 * minute)
+        return `${round(diff / minute)} minutes ago`;
+    if (diff <= 90 * minute)
+        return "an hour ago";
+    if (diff <= 22 * hour)
+        return `${round(diff / hour)} hours ago`;
+    if (diff <= 36 * hour)
+        return "a day ago";
+    if (diff <= 25 * day)
+        return `${round(diff / day)} days ago`;
+    if (diff <= 45 * day)
+        return "a month ago";
+    if (diff <= 345 * day)
+        return `${round(diff / month)} months ago`;
+    if (diff <= 545 * day)
+        return "a year ago";
+
+    return `${round(diff / year)} years ago`;
+}
 }
 
 
