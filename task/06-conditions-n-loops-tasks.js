@@ -190,7 +190,8 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    
+    throw new Error('Not implemented');
+
 }
 
 
@@ -233,7 +234,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+    return str.split("").reverse().join("");
 }
 
 
@@ -250,7 +251,14 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+    let result = 0;
+    while (num > 0) {
+        result += num % 10;
+        result *= 10;
+        num = parseInt(num / 10);
+
+    }
+    return result / 10;
 }
 
 
@@ -294,7 +302,7 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    return num % 9;
 }
 
 
@@ -356,7 +364,6 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    function timespanToHumanString(startDate, endDate) {
     let round = (time) => {
         let dig = parseInt(time, 10),
             ceil = time - dig;
@@ -397,7 +404,7 @@ function timespanToHumanString(startDate, endDate) {
         return "a year ago";
 
     return `${round(diff / year)} years ago`;
-}
+
 }
 
 
@@ -421,7 +428,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+    return num.toString(n);
 }
 
 
