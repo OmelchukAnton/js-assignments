@@ -190,7 +190,19 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    let map = new Map;
+
+    for (let i = 0; i < str.length; i++) {
+
+        let reit = str[i],
+            dist = map.get(reit) || str.indexOf(reit, i + 1);
+
+        if (dist == -1)
+            return reit;
+
+        map.set(reit, dist);
+    }
+    return null;
 
 }
 
@@ -217,7 +229,17 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    if (b < a) {
+        var tmp = a;
+        var a = b;
+        var b = tmp;
+    }
+    
+    let before = (isStartIncluded ? "[" : "(" );
+    let after = (isEndIncluded ? "]" : ")" );
+
+    return `${before}${a}, ${b}${after}`;
+
 }
 
 
@@ -283,10 +305,24 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+    let digits = String(ccn),
+        sum = 0,
+        even = false;
+
+    for (let i = digits.length - 1; i >= 0; i--) {
+        let dig = parseInt(digits[i], 10),
+            doubled = dig * 2;
+
+        if (doubled > 9)
+            doubled -= 9;
+
+        sum += (even) ? doubled : dig;
+        even = !even;
+    }
+
+    return sum % 10 == 0;
 }
-
-
+ 
 /**
  * Returns the digital root of integer:
  *   step1 : find sum of all digits
@@ -328,7 +364,25 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
+    const stack = [];
+    const openBrackets = ['[', '{', '(', '<'];
+    const closeBrackets = [']', '}', ')', '>'];
+
+    for (let i = 0; i < str.length; i++) {
+        const currentBracket = str[i];
+
+        if (openBrackets.indexOf(currentBracket) != -1) {
+            stack.push(currentBracket);
+            continue;
+        }
+
+        const topBracket = stack.pop();
+
+        if (openBrackets.indexOf(topBracket) != closeBrackets.indexOf(currentBracket))
+            return false;
+    }
+
+    return stack.length == 0;
 }
 
 
@@ -445,8 +499,27 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-    throw new Error('Not implemented');
+    let current = 0, breakPoint = 0;
+
+    while (true) {
+        let isSame = true;
+
+        for (let i = 0; i < pathes.length; i++)
+            if (pathes[0][current] != pathes[i][current])
+                isSame = false;
+
+        if (isSame) {
+            if (pathes[0][current] == "/")
+                breakPoint = current + 1;
+
+            current++;
+        } else
+            break;
+    }
+
+    return pathes[0].slice(0, breakPoint);
 }
+
 
 
 /**
@@ -468,8 +541,24 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-    throw new Error('Not implemented');
+    let result = Array.from({length: m1.length}, () => []);
+
+    result = result.map(() => Array.from({length: m2[0].length}, () => 0));
+
+    for (let i = 0; i < m1.length; i++) {
+        for (let j = 0; j < m2[0].length; j++) {
+            let sum = 0;
+
+            for (let f = 0; f < m1[0].length; f++)
+                sum += m1[i][f] * m2[f][j];
+
+            result[i][j] = sum;
+        }
+    }
+
+    return result;
 }
+
 
 
 /**
