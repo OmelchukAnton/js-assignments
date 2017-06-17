@@ -21,8 +21,8 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-    var str = value1 + value2;
-    return str;
+    // return value1 + value2;
+    return value1.concat(value2);
 }
 
 
@@ -58,7 +58,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-    return  `Hello, ${firstName} ${lastName}!`;
+    return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -72,7 +72,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    return value.substring(7, value.length-1);
+    return value.slice(7, -1);
 }
 
 
@@ -87,7 +87,7 @@ function extractNameFromTemplate(value) {
  *   'cat'       => 'c'
  */
 function getFirstChar(value) {
-    return value.charAt(0);
+    return value[0];
 }
 
 /**
@@ -102,7 +102,7 @@ function getFirstChar(value) {
  *   '\tHello, World! ' => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-    return value.trim(value);
+    return value.trim();
 }
 
 /**
@@ -204,11 +204,10 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-
     return '┌' + '─'.repeat(width - 2) + '┐\n'
         + ('│' + ' '.repeat(width - 2) + '│\n').repeat(height - 2)
-        + '└' + '─'.repeat(width - 2) + '┘\n'
-}
+        +  '└' + '─'.repeat(width - 2) + '┘\n'
+} 
 
 
 /**
@@ -227,9 +226,9 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    return str.replace( /[A-Za-z]/g , function(c) {
-    return String.fromCharCode( c.charCodeAt(0) + ( c.toUpperCase() <= "M" ? 13 : -13 ) );
-  } );
+    return str.replace(/[A-Za-z]/g, function(c) {
+        return String.fromCharCode(c.charCodeAt(0) + (c.toUpperCase() <= "M" ? 13 : -13));
+    });
 }
 
 /**
@@ -250,7 +249,7 @@ function isString(value) {
 }
 
 
-/**
+/**x    
  * Returns playid card id.
  * 
  * Playing cards inittial deck inclides the cards in the following order:
