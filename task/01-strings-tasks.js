@@ -134,6 +134,7 @@ function repeatString(value, count) {
  */
 function removeFirstOccurrences(str, value) {
     return str.replace(value, "");
+    
 }
 
 /**
@@ -276,16 +277,12 @@ function isString(value) {
 
 function getCardId(value) {
 
-    // var str = ['A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣', 'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
-    // 'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥', 'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'];
-    // return str.indexOf(value);
-    var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-    var suits = ['♣', '♦', '♥', '♠'];
+    const cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    const suits = ['♣', '♦', '♥', '♠'];
 
-    var cardName = value.substr(0, value.length - 1);
-    var suit = value.charAt(value.length - 1);
-
-    var cardFirstIndex = suits.indexOf(suit) * 13;
+    const cardName = value.slice(0, -1);
+    const suit = value[value.length - 1];
+    const cardFirstIndex = suits.indexOf(suit) * 13;
 
     return cardFirstIndex + cards.indexOf(cardName);
 }
