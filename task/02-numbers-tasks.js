@@ -38,7 +38,8 @@ function getRectangleArea(width, height) {
  *   0    => 0
  */
 function getCicleCircumference(radius) {
-    return (2*Math.PI*radius);
+    return Math.PI * 2 * radius;
+
 }
 
 /**
@@ -73,7 +74,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 }
 
 /**
@@ -89,7 +90,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-    return -b / a;
+    return -b/a;    
 }
 
 
@@ -112,7 +113,6 @@ function getLinearEquationRoot(a, b) {
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
     return Math.abs(Math.atan2(x1, y1) - Math.atan2(x2, y2));
-
 }
 
 /**
@@ -128,8 +128,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    var x = value.toFixed();
-    return x.slice(-1);
+    return (value.toFixed()).slice(-1);
 }
 
 
@@ -145,7 +144,7 @@ function getLastDigit(value) {
  * '-525.5'     => -525.5
  */
 function parseNumberFromString(value) {
-    return value.toString();
+    return parseFloat(value);
 }
 
 /**
@@ -162,7 +161,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelipidedDiagonal(a,b,c) {
-    return Math.hypot(a,b,c);
+    return Math.hypot(a, b, c);
 }
 
 /**
@@ -183,9 +182,7 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-    var z = num / Math.pow(10, pow);
-    var x = Math.round(z);
-    return x * Math.pow(10, pow);
+    return Math.round(num / Math.pow(10, pow)) * Math.pow(10, pow);
 }
 
 /**
@@ -207,16 +204,19 @@ function roundToPowerOfTen(num, pow) {
  */
 function isPrime(n) {
     if (n === 1) {
-    return false;
+
+        return false;
     }
 
-    for (var d = 2; d * d <= n; d++) {
-    if (n % d == 0) {
-    return false;
+    for (let a = 2; a * a <= n; a++) {
+
+        if (n % a == 0) {
+
+            return false;
         }
     }
 
-    return true
+    return true;
 }
 
 /**
@@ -235,12 +235,7 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    var a = (+value);
-    var b = def;
-    if (a > b){
-        return a;
-    }
-    return b;
+    return (value > def) ? value : def;
 }
 
 module.exports = {
