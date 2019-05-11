@@ -22,7 +22,7 @@
  *   5, 5  => 25
  */
 function getRectangleArea(width, height) {
-    return width*height;
+    return width * height;
 }
 
 
@@ -38,8 +38,7 @@ function getRectangleArea(width, height) {
  *   0    => 0
  */
 function getCicleCircumference(radius) {
-    return Math.PI * 2 * radius;
-
+    return 2 * Math.PI * radius;
 }
 
 /**
@@ -74,7 +73,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-    return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 }
 
 /**
@@ -90,7 +89,7 @@ function getDistanceBetweenPoints(x1, y1, x2, y2) {
  *   5*x = 0         => 0
  */
 function getLinearEquationRoot(a, b) {
-    return -b/a;    
+    return -b/a;
 }
 
 
@@ -112,7 +111,7 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (1,2)     => 0
  */
 function getAngleBetweenVectors(x1, y1, x2, y2) {
-    return Math.abs(Math.atan2(x1, y1) - Math.atan2(x2, y2));
+    return Math.abs(Math.atan2(x1, y1) - Math.atan2(x2, y2)); 
 }
 
 /**
@@ -128,7 +127,7 @@ function getAngleBetweenVectors(x1, y1, x2, y2) {
  *     0     => 0
  */
 function getLastDigit(value) {
-    return (value.toFixed()).slice(-1);
+    return value.toFixed().slice(-1);
 }
 
 
@@ -182,7 +181,7 @@ function getParallelipidedDiagonal(a,b,c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-    return Math.round(num / Math.pow(10, pow)) * Math.pow(10, pow);
+    return Math.round(num / Math.pow(10, pow)) * Math.pow(10, pow); 
 }
 
 /**
@@ -203,15 +202,9 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-    if (n === 1) {
 
-        return false;
-    }
-
-    for (let a = 2; a * a <= n; a++) {
-
-        if (n % a == 0) {
-
+    for (let i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
             return false;
         }
     }
@@ -235,7 +228,7 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    return (value > def) ? value : def;
+    return value > def ? value : def;
 }
 
 module.exports = {

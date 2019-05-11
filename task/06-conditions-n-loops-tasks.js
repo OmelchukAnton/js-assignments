@@ -30,18 +30,15 @@
  *
  */
 function getFizzBuzz(num) {
-
-    let result = "";
-    if (num % 3 == 0) {
-        result += 'Fizz';
+    if (num % 3 == 0 && num % 5 == 0) {
+        return 'FizzBuzz';
+    } else if (num % 5 == 0) {
+        return 'Buzz';
+    } else if (num % 3 == 0) {
+        return 'Fizz';
+    } else {
+        return num;
     }
-    if (num % 5 == 0) {
-        result += 'Buzz';
-    }
-    if (result == "") {
-        result = num;
-    }
-    return result;
 }
 
 
@@ -58,8 +55,9 @@ function getFizzBuzz(num) {
  */
 function getFactorial(n) {
     let result = 1;
-    for (let i = 2; i <= n; i++) 
-        result *= i;    
+    for(let i = 2; i <= n; i ++) {
+        result *= i;
+    }
     return result;
 }
 
@@ -145,7 +143,6 @@ function doRectanglesOverlap(rect1, rect2) {
 }
 
 
-
 /**
  * Returns true, if point lies inside the circle, otherwise false.
  * Circle is an object of 
@@ -193,17 +190,17 @@ function findFirstSingleChar(str) {
     let map = new Map;
 
     for (let i = 0; i < str.length; i++) {
+        let reit = str[i];
+        let dist = map.get(reit) || str.indexOf(reit, i + 1);
 
-        let reit = str[i],
-            dist = map.get(reit) || str.indexOf(reit, i + 1);
-
-        if (dist == -1)
+        if (dist == -1) {
             return reit;
+        }
 
         map.set(reit, dist);
     }
+ 
     return null;
-
 }
 
 
@@ -229,17 +226,16 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+    
     if (b < a) {
         var tmp = a;
         var a = b;
         var b = tmp;
     }
-    
     let before = (isStartIncluded ? "[" : "(" );
     let after = (isEndIncluded ? "]" : ")" );
 
     return `${before}${a}, ${b}${after}`;
-
 }
 
 
@@ -256,7 +252,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    return str.split("").reverse().join("");
+    return [...str].reverse().join('');
 }
 
 
@@ -274,12 +270,13 @@ function reverseString(str) {
  */
 function reverseInteger(num) {
     let result = 0;
+
     while (num > 0) {
         result += num % 10;
         result *= 10;
         num = parseInt(num / 10);
-
     }
+
     return result / 10;
 }
 
@@ -313,8 +310,9 @@ function isCreditCardNumber(ccn) {
         let dig = parseInt(digits[i], 10),
             doubled = dig * 2;
 
-        if (doubled > 9)
+        if (doubled > 9) {
             doubled -= 9;
+        }
 
         sum += (even) ? doubled : dig;
         even = !even;
@@ -322,7 +320,8 @@ function isCreditCardNumber(ccn) {
 
     return sum % 10 == 0;
 }
- 
+
+
 /**
  * Returns the digital root of integer:
  *   step1 : find sum of all digits
@@ -375,11 +374,11 @@ function isBracketsBalanced(str) {
             stack.push(currentBracket);
             continue;
         }
-
         const topBracket = stack.pop();
 
-        if (openBrackets.indexOf(topBracket) != closeBrackets.indexOf(currentBracket))
+        if (openBrackets.indexOf(topBracket) != closeBrackets.indexOf(currentBracket)) {
             return false;
+        }
     }
 
     return stack.length == 0;
@@ -422,12 +421,12 @@ function timespanToHumanString(startDate, endDate) {
         let dig = parseInt(time, 10),
             ceil = time - dig;
 
-        if (ceil > 0.5)
+        if (ceil > 0.5) {
             dig++;
+        }
 
         return dig;
     };
-
     const diff = endDate - startDate;
     const second = 1000;
     const minute = 60 * second;
@@ -458,7 +457,6 @@ function timespanToHumanString(startDate, endDate) {
         return "a year ago";
 
     return `${round(diff / year)} years ago`;
-
 }
 
 
@@ -499,27 +497,31 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-    let current = 0, breakPoint = 0;
+    let current = 0, 
+        breakPoint = 0;
 
     while (true) {
         let isSame = true;
 
-        for (let i = 0; i < pathes.length; i++)
-            if (pathes[0][current] != pathes[i][current])
+        for (let i = 0; i < pathes.length; i++) {
+            if (pathes[0][current] != pathes[i][current]) {
                 isSame = false;
+            }
+        }
 
         if (isSame) {
-            if (pathes[0][current] == "/")
+            if (pathes[0][current] == "/") {
                 breakPoint = current + 1;
+            }
 
             current++;
-        } else
+        } else {
             break;
+        }
     }
 
     return pathes[0].slice(0, breakPoint);
 }
-
 
 
 /**
@@ -542,15 +544,16 @@ function getCommonDirectoryPath(pathes) {
  */
 function getMatrixProduct(m1, m2) {
     let result = Array.from({length: m1.length}, () => []);
-
     result = result.map(() => Array.from({length: m2[0].length}, () => 0));
 
     for (let i = 0; i < m1.length; i++) {
+
         for (let j = 0; j < m2[0].length; j++) {
             let sum = 0;
 
-            for (let f = 0; f < m1[0].length; f++)
+            for (let f = 0; f < m1[0].length; f++) {
                 sum += m1[i][f] * m2[f][j];
+            }
 
             result[i][j] = sum;
         }
@@ -558,7 +561,6 @@ function getMatrixProduct(m1, m2) {
 
     return result;
 }
-
 
 
 /**

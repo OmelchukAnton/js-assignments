@@ -70,7 +70,7 @@ function doubleArray(arr) {
  *    [] => [] 
  */
 function getArrayOfPositives(arr) {
-  return arr.filter(value => value > 0);
+  return arr.filter(arr => arr > 0);
 }
 
 /**
@@ -85,7 +85,7 @@ function getArrayOfPositives(arr) {
  *    [ 'cat, 'dog', 'raccon' ] => [ 'cat', 'dog', 'racoon' ]
  */
 function getArrayOfStrings(arr) {
-  return arr.filter(value => typeof value == 'string');
+  return arr.filter(val => typeof val == 'string');
 }
 
 /**
@@ -102,7 +102,7 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-  return arr.filter(arr => Boolean(arr));
+  return arr.filter(val => Boolean(val));
 }
 
 /**
@@ -146,7 +146,7 @@ function getStringsLength(arr) {
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
 function insertItem(arr, item, index) {
-    return arr.splice(index, 0, item);   
+  return arr.splice(index, 0, item);
 }
 
 /**
@@ -269,7 +269,7 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  return arr.reduce((previous, current, i) => previous.concat((Array(i + 1)).fill(current)), []);
+  return arr.reduce((prev, curr, i) => prev.concat((Array(i + 1)).fill(curr)), []);
 }
 
 
@@ -287,7 +287,7 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-  return arr.sort((a,b) => b - a).slice(0, 3);
+  return arr.sort((a, b) => b - a).slice(0, 3);
 }
  
  
@@ -302,6 +302,7 @@ function get3TopItems(arr) {
  *   [ -1, 0, 1 ] => 1
  *   [ 1, 2, 3]   => 3
  *   [ null, 1, 'elephant' ] => 1
+ *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
   return arr.reduce((prev, curr) => curr > 0 ? ++prev : prev, 0);
@@ -321,8 +322,8 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-  const items = 'zero one two three four five six seven eight nine';
-  return arr.sort((a, b) => items.indexOf(a) - items.indexOf(b));
+  const numbers = 'zero one two three four five six seven eight nine';
+  return arr.sort((a,b) => numbers.indexOf(a) - numbers.indexOf(b));
 }
 
 /** 
@@ -372,7 +373,7 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-  return arr.reduce((prev, curr) => prev + (curr === item ? 1 : 0), 0)
+  return arr.reduce((prev, curr) => prev + (curr === item ? 1 : 0), 0);
 }
 
 /**
@@ -387,7 +388,7 @@ function findAllOccurences(arr, item) {
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
 function toStringList(arr) {
-  return arr.toString();
+  return arr.join(',');
 }
 
 
@@ -438,9 +439,9 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-  return Array.from({ length: n }, (a, i) => Array.from({ length: n }, (b, j) => (i == j) ? 1 : 0));
+  return Array.from({length : n}, (a, i) => Array.from({length : n}, (b, j) => i == j ? 1 : 0));
 }
-//11111111
+
 /**
  * Creates an array of integers from the specified start to end (inclusive)
  * 
@@ -455,13 +456,13 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-  return Array.from({ length: end - start + 1 }, (a, b) => start + b);
+  return Array.from({length: end - start + 1}, (a, b) => start + b);
 }
 
 /**
  * Returns array containing only unique values from the specified array.
  *
- * @param {array} arr
+ * @param {array} array
  * @return {array}
  * 
  * @example
@@ -505,13 +506,13 @@ function distinct(arr) {
  */
 function group(array, keySelector, valueSelector) {
   return array.reduce((prev, curr) => {
-        let key = keySelector(curr);
-        let value = valueSelector(curr);
-        let arr = prev.get(key) || [];
-        arr.push(value);
-        prev.set(key, arr);
-        return prev;
-    }, 
+    let key = keySelector(curr);
+    let value = valueSelector(curr);
+    let arr = prev.get(key) || [];
+    arr.push(value);
+    prev.set(key, arr);
+    return prev;
+  }, 
   new Map);
 }
 
@@ -549,7 +550,6 @@ function getElementByIndexes(arr, indexes) {
 }
 
 
-
 /**
  * Swaps the head and tail of the specified array:
  * the head (first half) of array move to the end, the tail (last half) move to the start. 
@@ -573,7 +573,6 @@ function swapHeadAndTail(arr) {
   return arr.map((x, i) => arr[i <= middle ? ((i==middle && arr.length%2!=0) ? i : middle + i + 1) : (i - middle - 1)]);
 }
 
-    
 
 module.exports = {
     findElement: findElement,
